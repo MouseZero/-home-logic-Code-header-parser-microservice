@@ -3,7 +3,13 @@ const express = require('express')
 const app = express()
 
 app.get('/', (req, res, next) => {
-  res.send('Hello World')
+  let ipArray = req.ip.split(':')
+  const result = {
+    ipaddress: ipArray[ipArray.length - 1],
+    language: req.headers['accept-language'].split(',')[0],
+    software: req.headers['user-agent']
+  }
+  res.send(JSON.stringify(result, null, 2))
 })
 
 const port = process.argv[2] || 8080
