@@ -14,7 +14,7 @@ app.get('/', (req, res, next) => {
   res.send(JSON.stringify(result, null, 2))
 })
 
-const port = process.argv[2] || 8080
+const port = process.env.PORT || 8080
 app.listen(port, _ => {
   console.log('Node server started on ' + port + '!!!')
 })
